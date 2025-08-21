@@ -4,18 +4,15 @@ services:
     container_name: caddy
     restart: unless-stopped
     extra_hosts:
-      - mcp-playground:0.0.0.0
+      - mcpservers-playground:0.0.0.0
     networks:
       - reverse_proxy
     ports:
       - 8888:80
     volumes:
-      - type: bind
-        source: ./caddy/config
-        target: /etc/caddy
-        options: [z]
+      - ./caddy/config:/etc/caddy:Z
 
-  contex7:
+  context7:
     image: "docker.io/mcp/context7:latest"
     container_name: context7
     networks:
