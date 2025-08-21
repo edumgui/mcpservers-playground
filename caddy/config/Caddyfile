@@ -1,0 +1,25 @@
+#--------------------------------------------------------------------------
+# Caddy configuration
+# https://caddyserver.com/docs/caddyfile/options
+#--------------------------------------------------------------------------
+
+{
+  auto_https off
+}
+
+#--------------------------------------------------------------------------
+# Reverse proxy
+# https://caddyserver.com/docs/caddyfile/directives/reverse_proxy
+#--------------------------------------------------------------------------
+
+# Aquí se configura el acceso HTTP al contenedor de la aplicación web
+# También se debe configurar para que el acceso http sea redirigido automáticamente al bloque de https
+
+:80 {
+    handle_path /context7/* {
+        reverse_proxy http://context7:8080
+    }
+    handle_path /sequentialthinking/* {
+        reverse_proxy http://sequentialthinking:8000
+    }
+}
