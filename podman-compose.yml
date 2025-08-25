@@ -2,9 +2,6 @@ services:
   caddy:
     image: docker.io/caddy:alpine
     container_name: caddy
-    restart: unless-stopped
-    extra_hosts:
-      - mcpservers-playground:0.0.0.0
     networks:
       - reverse_proxy
     ports:
@@ -24,7 +21,7 @@ services:
     image: "docker.io/supercorp/supergateway:latest"
     container_name: sequentialthinking
     command: >
-      --stdio "npx -y @modelcontextprotocol/server-sequential-thinking"
+      --stdio 'npx -y @modelcontextprotocol/server-sequential-thinking@latest' --baseUrl /sequentialthinking
     networks:
       - reverse_proxy
     depends_on:

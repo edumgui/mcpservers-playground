@@ -2,9 +2,29 @@
 
 ## Project Motivation
 
-This project is designed to help you spin up containers on a different machine than where you run VS Code. This separation ensures your development environment remains responsive and avoids resource contention while coding or building.
+This project is designed to help you spin up MCP servers containers on a different host than where you run VS Code. This separation ensures your development environment remains responsive and avoids resource contention while coding or building.
 
 ## Spin Up Containers
+
+
+For convenience, you can use the provided `Makefile` to manage containers:
+
+- `make up` — Start all containers
+- `make down` — Stop all containers
+- `make logs` — Follow logs for all containers
+- `make logs SERVICE=<service-name>` — Follow logs for a single container (e.g., `make logs SERVICE=caddy`)
+- `make status` — Show container status
+- `make restart` — Restart all containers
+
+## Required Step: Hostname Resolution
+
+You must add an entry to your `/etc/hosts` file on the client machine:
+
+```
+<IP_OF_MCP_HOST> mcpservers-playground
+```
+
+Replace `<IP_OF_MCP_HOST>` with the actual IP address of the host running the containers. This ensures that requests to `http://mcpservers-playground:8888` resolve correctly.
 
 1. Make sure you have Podman and podman-compose installed.
 2. In the project root, run:
@@ -21,19 +41,9 @@ This project is designed to help you spin up containers on a different machine t
 
 ## Accessing Services
 
-- Caddy reverse proxy: http://mcp-playground:8888
-- Sequential Thinking: http://mcp-playground:8888/sequentialthinking/
-- Context7: http://mcp-playground:8888/context7/mcp
-
-## VS Code Configuration
-
-- Open the project folder in VS Code.
-- Recommended extensions:
-  - YAML
-  - Docker
-  - Remote - Containers (if you want to develop inside containers)
-- For best experience, enable autosave and install syntax highlighting for your main languages (TypeScript, Python, etc).
-- Use the built-in terminal for running Podman commands.
+- Caddy reverse proxy: http://mcpservers-playground:8888
+- Context7: http://mcpservers-playground:8888/context7/mcp
+- Sequential Thinking: http://mcpservers-playground:8888/sequentialthinking/
 
 ## Troubleshooting
 
@@ -42,8 +52,3 @@ This project is designed to help you spin up containers on a different machine t
   podman-compose logs <service-name>
   ```
 - Make sure ports are not blocked by other processes.
-- For permission issues with volumes, ensure your user has access and SELinux context is set (use `:z` or `:Z` in volume options).
-
----
-
-That’s it! You’re ready to develop and test agents in MCP Playground.
