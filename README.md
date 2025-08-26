@@ -4,8 +4,8 @@
 
 This project is designed to help you spin up MCP servers containers on a different host than where you run VS Code. This separation ensures your development environment remains responsive and avoids resource contention while coding or building.
 
-## Spin Up Containers
 
+## Spin Up Containers
 
 For convenience, you can use the provided `Makefile` to manage containers:
 
@@ -16,11 +16,25 @@ For convenience, you can use the provided `Makefile` to manage containers:
 - `make status` — Show container status
 - `make restart` — Restart all containers
 
+### Environment Variables
+
+Some containers require environment variables to start correctly. For example, the GitHub MCP server needs `GITHUB_PERSONAL_ACCESS_TOKEN` set in your environment or in a `.env` file:
+
+```env
+GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token_here
+```
+
+You can copy `.env.original` to `.env` and fill in your values.
+
+### YAML Reusable Blocks
+
+The `podman-compose.yml` uses YAML anchors and aliases for reusable container configuration blocks. This reduces duplication and makes maintenance easier.
+
 ## Required Step: Hostname Resolution
 
 You must add an entry to your `/etc/hosts` file on the client machine:
 
-```
+```bash
 <IP_OF_MCP_HOST> mcpservers-playground
 ```
 
@@ -39,16 +53,20 @@ Replace `<IP_OF_MCP_HOST>` with the actual IP address of the host running the co
    podman-compose down
    ```
 
+
 ## Accessing Services
 
 - Caddy reverse proxy: http://mcpservers-playground:8888
 - Context7: http://mcpservers-playground:8888/context7/mcp
-- Sequential Thinking: http://mcpservers-playground:8888/sequentialthinking/
+- GitHub: http://mcpservers-playground:8888/github/sse
+- Sequential Thinking: http://mcpservers-playground:8888/sequentialthinking/sse
 
 ## Troubleshooting
 
 - If a container fails to start, check logs:
-  ```bash
-  podman-compose logs <service-name>
-  ```
+
+   ```bash
+   podman-compose logs <service-name>
+   ```
+
 - Make sure ports are not blocked by other processes.

@@ -17,6 +17,11 @@
     handle_path /context7/* {
         reverse_proxy http://context7:8080
     }
+    handle_path /github/* {
+        reverse_proxy http://github:8000 {
+            flush_interval -1
+        }
+    }
     handle_path /sequentialthinking/* {
         reverse_proxy http://sequentialthinking:8000 {
             flush_interval -1

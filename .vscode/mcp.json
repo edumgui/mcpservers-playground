@@ -1,12 +1,16 @@
 {
 	"servers": {
-    "context7": {
-      "type": "http",
-      "url": "http://mcpservers-playground:8888/context7/mcp"
-    },
-	"sequentialthinking": {
-      "type": "sse",
-      "url": "http://mcpservers-playground:8888/sequentialthinking/sse"
+		"context7": {
+			"type": "http",
+			"url": "http://mcpservers-playground:8888/context7/mcp"
+		},
+		"sequentialthinking": {
+			"type": "http",
+			"url": "http://mcpservers-playground:8888/sequentialthinking/sse"
+		},
+		"github": {
+			"url": "http://mcpservers-playground:8888/github/sse",
+			"type": "http"
     }
   }
 }

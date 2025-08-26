@@ -1,3 +1,10 @@
+supergateway: &supergateway
+  image: "docker.io/supercorp/supergateway:latest"
+  networks:
+    - reverse_proxy
+  depends_on:
+    - caddy
+
 services:
   caddy:
     image: docker.io/caddy:alpine
@@ -17,15 +24,21 @@ services:
     depends_on:
       - caddy
 
+  github:
+    <<: *supergateway
+    container_name: github
+    command: >
+      --stdio 'npx -y @modelcontextprotocol/server-github' --baseUrl /github
+    environment:
+      GITHUB_TOOLSETS: all
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+      GITHUB_READ_ONLY: 1
+
   sequentialthinking:
-    image: "docker.io/supercorp/supergateway:latest"
+    <<: *supergateway
     container_name: sequentialthinking
     command: >
       --stdio 'npx -y @modelcontextprotocol/server-sequential-thinking@latest' --baseUrl /sequentialthinking
-    networks:
-      - reverse_proxy
-    depends_on:
-      - caddy
 
 networks:
   reverse_proxy:
