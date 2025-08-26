@@ -56,13 +56,13 @@ Replace `<IP_OF_MCP_HOST>` with the actual IP address of the host running the co
    podman-compose down
    ```
 
-## Accessing Services
+## Services
 
-- Caddy reverse proxy: http://mcpservers-playground:8888
-- Context7: http://mcpservers-playground:8888/context7/mcp
-- GitHub: http://mcpservers-playground:8888/github/sse
-- Sequential Thinking: http://mcpservers-playground:8888/sequentialthinking/sse
-- Terraform: http://mcpservers-playground:8888/terraform/mcp
+- [Caddy reverse proxy](https://github.com/caddyserver/caddy)
+- [Context7](https://github.com/upstash/context7)
+- [GitHub MCP Server](https://github.com/github/github-mcp-server)
+- [Sequential Thinking](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)
+- [Terraform MCP](https://github.com/hashicorp/terraform-mcp-server)
 
 ## Troubleshooting
 
