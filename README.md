@@ -58,11 +58,11 @@ Replace `<IP_OF_MCP_HOST>` with the actual IP address of the host running the co
 
 ## Services
 
-- [Caddy reverse proxy](https://github.com/caddyserver/caddy)
-- [Context7](https://github.com/upstash/context7)
+- [Caddy Server](https://github.com/caddyserver/caddy)
+- [Context7 MCP Server](https://github.com/upstash/context7)
 - [GitHub MCP Server](https://github.com/github/github-mcp-server)
-- [Sequential Thinking](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)
-- [Terraform MCP](https://github.com/hashicorp/terraform-mcp-server)
+- [Sequential Thinking MCP Server](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)
+- [Terraform MCP Server](https://github.com/hashicorp/terraform-mcp-server)
 
 ## Troubleshooting
 
