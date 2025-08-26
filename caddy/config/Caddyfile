@@ -27,4 +27,8 @@
             flush_interval -1
         }
     }
+    handle_path /terraform/* {
+        reverse_proxy http://terraform:8080 {
+        }
+    }
 }

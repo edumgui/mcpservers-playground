@@ -4,12 +4,16 @@
 			"type": "http",
 			"url": "http://mcpservers-playground:8888/context7/mcp"
 		},
-		"sequentialthinking": {
-			"type": "http",
-			"url": "http://mcpservers-playground:8888/sequentialthinking/sse"
-		},
 		"github": {
 			"url": "http://mcpservers-playground:8888/github/sse",
+			"type": "sse"
+    },
+		"sequentialthinking": {
+			"type": "sse",
+			"url": "http://mcpservers-playground:8888/sequentialthinking/sse"
+		},
+    "terraform": {
+			"url": "http://mcpservers-playground:8888/terraform/mcp",
 			"type": "http"
     }
   }

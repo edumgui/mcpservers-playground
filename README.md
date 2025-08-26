@@ -16,15 +16,18 @@ For convenience, you can use the provided `Makefile` to manage containers:
 - `make status` — Show container status
 - `make restart` — Restart all containers
 
+
 ### Environment Variables
 
-Some containers require environment variables to start correctly. For example, the GitHub MCP server needs `GITHUB_PERSONAL_ACCESS_TOKEN` set in your environment or in a `.env` file:
+Some containers require environment variables to start correctly. For example, the GitHub MCP server uses the following variables in your `.env` file:
 
 ```env
 GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token_here
+GITHUB_TOOLSETS=issues,pull_requests,search,commits,repository
+GITHUB_READ_ONLY=1
 ```
 
-You can copy `.env.original` to `.env` and fill in your values.
+You can copy `.env.original` to `.env` and fill in your values. These variables are referenced in `podman-compose.yml` for easier configuration and updates.
 
 ### YAML Reusable Blocks
 
@@ -53,13 +56,13 @@ Replace `<IP_OF_MCP_HOST>` with the actual IP address of the host running the co
    podman-compose down
    ```
 
-
 ## Accessing Services
 
 - Caddy reverse proxy: http://mcpservers-playground:8888
 - Context7: http://mcpservers-playground:8888/context7/mcp
 - GitHub: http://mcpservers-playground:8888/github/sse
 - Sequential Thinking: http://mcpservers-playground:8888/sequentialthinking/sse
+- Terraform: http://mcpservers-playground:8888/terraform/mcp
 
 ## Troubleshooting
 

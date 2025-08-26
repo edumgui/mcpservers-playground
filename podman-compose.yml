@@ -30,15 +30,25 @@ services:
     command: >
       --stdio 'npx -y @modelcontextprotocol/server-github' --baseUrl /github
     environment:
-      GITHUB_TOOLSETS: all
+      GITHUB_TOOLSETS: ${GITHUB_TOOLSETS}
       GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_PERSONAL_ACCESS_TOKEN}
-      GITHUB_READ_ONLY: 1
+      GITHUB_READ_ONLY: ${GITHUB_READ_ONLY}
 
   sequentialthinking:
     <<: *supergateway
     container_name: sequentialthinking
     command: >
       --stdio 'npx -y @modelcontextprotocol/server-sequential-thinking@latest' --baseUrl /sequentialthinking
+
+  terraform:
+    image: docker.io/hashicorp/terraform-mcp-server:latest
+    container_name: terraform
+    command: >
+      terraform-mcp-server streamable-http --transport-host 0.0.0.0
+    networks:
+      - reverse_proxy
+    depends_on:
+      - caddy
 
 networks:
   reverse_proxy:
